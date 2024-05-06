@@ -1,5 +1,5 @@
 import { Router } from "express";
-// import db from "../../db";
+import db from "../../db";
 import { compareHash } from "../../services/passwords";
 import * as jwt from 'jsonwebtoken'
 import config from "../../config";
