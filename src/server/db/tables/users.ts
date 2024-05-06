@@ -4,7 +4,6 @@ import type { RowDataPacket } from "mysql2";
 export interface IUsersRow extends RowDataPacket {
     id:number;
     email:string;
-    password:string;
     created_at:Date;
 }
 
