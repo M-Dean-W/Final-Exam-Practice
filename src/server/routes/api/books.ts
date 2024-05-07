@@ -4,9 +4,8 @@ import tokenCheck from '../../middlewares/tokenCheck';
 
 const router = Router();
 
-router.get('/:id', async (req,res) => {
+router.get('/:id', tokenCheck, async (req,res) => {
     try {
-        tokenCheck
         const id = parseInt(req.params.id, 10)
         const book = await db.books.getOneBook(id)
         res.json(book)
@@ -16,9 +15,8 @@ router.get('/:id', async (req,res) => {
     }
 });
 
-router.get('/', async (req,res) => {
+router.get('/', tokenCheck, async (req,res) => {
     try {
-        tokenCheck
         const books = await db.books.getALLBooks()
         res.json(books)
     } catch (error) {
