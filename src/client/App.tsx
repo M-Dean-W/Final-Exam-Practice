@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./views/Home";
+import CompleteNav from "./components/CompleteNav";
+import Books from "./views/Books";
 
 
 interface AppProps {}
@@ -9,8 +11,10 @@ const App = (props: AppProps) => {
 
     return (
         <BrowserRouter>
+        <CompleteNav></CompleteNav>
         <Routes>
             <Route path="/" element={<Home />}></Route>
+            <Route path='/books' element={<Books />}></Route>
         </Routes>
         </BrowserRouter>
     );

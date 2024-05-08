@@ -9,37 +9,30 @@ interface HomeProps { }
 
 const Home = (props: HomeProps) => {
 
-  const [books, setBooks] = useState<Book[]>([])
+    const [books, setBooks] = useState<Book[]>([])
 
-  useEffect(() => {
-    fetcher('/api/books', 'GET')
-      .then((books) => setBooks(books))
-  },[])
+    useEffect(() => {
+        fetcher('/api/books', 'GET')
+            .then((books) => setBooks(books))
+    }, [])
 
 
-  return (
-    <Container>
-      <div className="row justify-content-around p-3">
-        <div className='col-sm-3 col-md-6'>
-          {books.map(book => (
-            <Card key={book.id} className=" bg-light rounded-3 mb-3 mt-2">
-              <Card.Title className='text-center mt-2'>
-                {book.title}
-              </Card.Title>
-              <Card.Subtitle className='text-center mt-2'>
-                by {book.author}
-              </Card.Subtitle>
-              <Card.Body>
-                <Card.Text >
-                </Card.Text>
-                <Link to={`books/${book.id}`} className='btn btn-danger '>Details</Link>
-              </Card.Body>
+    return (
+        <Container>
+            <Card className=" bg-light rounded-3 mb-3 mt-2">
+                <Card.Title className='text-center mt-2'>
+                </Card.Title>
+                <Card.Subtitle className='text-center mt-2'>
+                </Card.Subtitle>
+                <Card.Body>
+                    <Card.Text style={{ fontSize: '2em' }} className='text-center'>
+                        Welcome to the Williamson Bookstore! Click the details to see our list of books
+                    </Card.Text>
+                    <Link to='/books' className='btn btn-danger'>Details</Link>
+                </Card.Body>
             </Card>
-          ))}
-        </div>
-      </div>
-    </Container>
-  );
+        </Container>
+    );
 };
 
 export default Home;
