@@ -4,7 +4,7 @@ import tokenCheck from '../../middlewares/tokenCheck';
 
 const router = Router();
 
-router.get('/:id', tokenCheck, async (req,res) => {
+router.get('/:id', async (req,res) => {
     try {
         const id = parseInt(req.params.id, 10)
         const book = await db.books.getOneBook(id)
@@ -15,7 +15,7 @@ router.get('/:id', tokenCheck, async (req,res) => {
     }
 });
 
-router.get('/', tokenCheck, async (req,res) => {
+router.get('/', async (req,res) => {
     try {
         const books = await db.books.getALLBooks()
         res.json(books)
@@ -25,7 +25,7 @@ router.get('/', tokenCheck, async (req,res) => {
     }
 });
 
-router.post('/', async (req,res) => {
+router.post('/', tokenCheck, async (req,res) => {
     try {
         const { category_id, title, author, price } = req.body
         const bookResult = await db.books.insertBook(category_id, title, author, price || '')
@@ -36,7 +36,7 @@ router.post('/', async (req,res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", tokenCheck, async (req, res) => {
     try {
         const { category_id, title, author, price } = req.body;
         const id = Number(req.params.id);
@@ -48,7 +48,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", tokenCheck, async (req, res) => {
     try {
         const id = Number(req.params.id);
         await db.books.deleteBook(id);
