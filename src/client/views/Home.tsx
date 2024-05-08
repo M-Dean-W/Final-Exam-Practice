@@ -26,9 +26,8 @@ const Home = (props: HomeProps) => {
                 </Card.Subtitle>
                 <Card.Body>
                     <Card.Text style={{ fontSize: '2em' }} className='text-center'>
-                        Welcome to the Williamson Bookstore! Click the details to see our list of books
+                        Welcome to the Williamson Bookstore! Click Booklist to see our list of books. To gain access to add, delete, or update books, please login or register a new account!
                     </Card.Text>
-                    <Link to='/books' className='btn btn-danger'>Details</Link>
                 </Card.Body>
             </Card>
         </Container>
