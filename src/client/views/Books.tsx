@@ -32,7 +32,7 @@ const Books = (props: BookProps) => {
               <Card.Body>
                 <Card.Text >
                 </Card.Text>
-                <Link to={`books/${book.id}`} className='btn btn-danger'>Details</Link>
+                <Link to={`/books/${book.id}`} className='btn btn-secondary'>Details</Link>
               </Card.Body>
             </Card>
           ))}

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Book } from '../types';
 import { Card, Container } from 'react-bootstrap';
 import { fetcher } from '../services/fetcher';
-import { Link } from 'react-router-dom';
 
 
 interface HomeProps { }

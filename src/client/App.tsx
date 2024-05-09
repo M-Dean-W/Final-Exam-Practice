@@ -5,6 +5,7 @@ import CompleteNav from "./components/CompleteNav";
 import Books from "./views/Books";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import BookDetails from "./views/BookDetails";
 
 
 interface AppProps {}
@@ -19,6 +20,7 @@ const App = (props: AppProps) => {
             <Route path='/books' element={<Books />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
+            <Route path='/books/:id' element={<BookDetails />}></Route>
         </Routes>
         </BrowserRouter>
     );
