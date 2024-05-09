@@ -19,9 +19,9 @@ const Home = (props: HomeProps) => {
     return (
         <Container>
             <Card className=" bg-light rounded-3 mb-3 mt-2">
-                <Card.Title className='text-center mt-2'>
+                <Card.Title className='text-center'>
                 </Card.Title>
-                <Card.Subtitle className='text-center mt-2'>
+                <Card.Subtitle className='text-center'>
                 </Card.Subtitle>
                 <Card.Body>
                     <Card.Text style={{ fontSize: '2em' }} className='text-center'>

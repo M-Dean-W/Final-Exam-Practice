@@ -37,7 +37,7 @@ const BookDetails = (props: BookDetailsProps) => {
                                 <Card.Text>
                                     Price: {book.price}
                                 </Card.Text>
-                                {/* <Link to={`book/${book.id}`} className='btn btn-secondary'>Edit Me!</Link> */}
+                                <Link to={`/books/${book.id}/edit`} className='btn btn-secondary'>Edit Me!</Link>
                             </Card.Body>
                         </Card>
                     ))}

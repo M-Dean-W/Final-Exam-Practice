@@ -7,6 +7,7 @@ import Login from "./views/Login";
 import Register from "./views/Register";
 import BookDetails from "./views/BookDetails";
 import AddBooks from "./views/AddBooks";
+import EditBooks from "./views/EditBooks";
 
 
 interface AppProps {}
@@ -22,6 +23,7 @@ const App = (props: AppProps) => {
             <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
             <Route path='/books/:id' element={<BookDetails />}></Route>
+            <Route path='/books/:id/edit' element={<EditBooks />}></Route>
             <Route path='/books/new' element={<AddBooks />}></Route>
         </Routes>
         </BrowserRouter>
