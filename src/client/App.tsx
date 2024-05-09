@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./views/Home";
 import CompleteNav from "./components/CompleteNav";
 import Books from "./views/Books";
+import Login from "./views/Login";
+import Register from "./views/Register";
 
 
 interface AppProps {}
@@ -15,6 +17,8 @@ const App = (props: AppProps) => {
         <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path='/books' element={<Books />}></Route>
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/register' element={<Register />}></Route>
         </Routes>
         </BrowserRouter>
     );
