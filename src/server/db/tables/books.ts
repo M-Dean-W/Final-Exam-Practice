@@ -11,7 +11,7 @@ export interface IBooksRow extends RowDataPacket {
 }
 
 export function getALLBooks() {
-    return SelectQuery<IBooksRow>('SELECT * FROM Books;')
+    return SelectQuery<IBooksRow>('SELECT Categories.name, Books.* FROM Books JOIN Categories ON Books.category_id = Categories.id;')
 }
 
 export function getOneBook(id:number) {

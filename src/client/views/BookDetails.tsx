@@ -32,7 +32,7 @@ const BookDetails = (props: BookDetailsProps) => {
                             </Card.Subtitle>
                             <Card.Body>
                                 <Card.Text >
-                                    Category ID: {book.category_id}
+                                    Category: {book.category_id}
                                 </Card.Text>
                                 <Card.Text>
                                     Price: {book.price}
