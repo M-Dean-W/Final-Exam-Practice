@@ -18,6 +18,11 @@ const AddBooks = (props: AddBooksProps) => {
     const [categoryID, setcategoryID] = useState<number | null>(null);
     const [categories, setCategories] = useState<Category[]>([]); 
     const navigate = useNavigate()
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        navigate('/login')
+    }
 
     useEffect(() => {
         fetcher('/api/categories')
@@ -26,6 +31,7 @@ const AddBooks = (props: AddBooksProps) => {
 
     const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
 
         if (!categoryID) {
             console.error('Please select category.');

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Book } from '../types';
 import { Card, Container } from 'react-bootstrap';
 import { fetcher } from '../services/fetcher';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 interface EditBooksProps { }
@@ -11,6 +11,12 @@ const EditBooks = (props: EditBooksProps) => {
 
     const [book, setBook] = useState<Book[]>([])
     const { id } = useParams()
+    const navigate = useNavigate()
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        navigate('/login')
+    }
 
     function getBooks() {
 

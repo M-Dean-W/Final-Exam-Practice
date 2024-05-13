@@ -1,14 +1,15 @@
 import * as React from 'react'
-import { useLocation, NavLink } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
+import { useLocation, NavLink, useNavigate } from 'react-router-dom';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 
 const CompleteNav = () => {
 
-    const loc = useLocation();
+    const navTo = useNavigate() 
 
-    if (loc.pathname === "/login" || loc.pathname === "/register") {
-      return <></>
-    }    
+    const logout = () => {
+      localStorage.removeItem('token')
+      navTo('/login')
+    }
     
     return <Navbar bg="info" expand="lg">
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -18,7 +19,7 @@ const CompleteNav = () => {
             <Nav.Link as={NavLink} to="/books">Booklist</Nav.Link>
             <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
             <Nav.Link as={NavLink} to="/books/new">Add Books</Nav.Link>
-            <Nav.Link as={NavLink} to="/logout">Logout</Nav.Link>
+            <Button onClick={logout} className='btn-info'>Logout</Button>
         </Nav>
     </Navbar.Collapse>
 </Navbar>
