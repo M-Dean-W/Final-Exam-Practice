@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Book, Category } from '../types';
 import { Card, Container } from 'react-bootstrap';
 import { fetcher } from '../services/fetcher';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
 
 interface EditBooksProps { }
 
@@ -14,12 +15,12 @@ const EditBooks = (props: EditBooksProps) => {
     const { id } = useParams()
     const navigate = useNavigate()
     const token = localStorage.getItem("token");
-    const [author, setAuthor] = useState('');
-    const [price, setPrice] = useState(0);
-    const [title, setTitle] = useState('')
+    const [author, setAuthor] = useState<string>('');
+    const [price, setPrice] = useState<number>(0.00);
+    const [title, setTitle] = useState<string>('')
     const [categoryID, setcategoryID] = useState<number | null>(null);
-    const [categories, setCategories] = useState<Category[]>([]); 
-    
+    const [categories, setCategories] = useState<Category[]>([]);
+
 
     if (!token) {
         navigate('/login')
@@ -28,26 +29,25 @@ const EditBooks = (props: EditBooksProps) => {
     function getBooks() {
 
         fetcher(`/api/books/${id}`, 'GET')
-            .then((book) => setBook(book))
-    }
+            .then(book => {
+                setBook(book)
+                setAuthor(book.author)
+                setTitle(book.title)
+                setPrice(book.price)
+            })
 
-    // function handleSubmitEdit () {
-    //     fetcher(`/api/books/${id}`, 'PUT')
-    //       .then(() => {
-    //         getBooks()
-    //       })
-    //   }
+    }
 
     useEffect(() => {
         getBooks()
-      }, [])
+    }, [])
 
-    const handleDelete = (id:number) =>{
-    
+    const handleDelete = (id: number) => {
+
         fetcher(`/api/books/${id}`, 'DELETE')
-          .then(data => console.log(data.message))
-          .then(getBooks)
-      }
+            .then(data => console.log(data.message))
+            navigate('/books')
+    }
 
     useEffect(() => {
         fetcher('/api/categories')
@@ -71,12 +71,12 @@ const EditBooks = (props: EditBooksProps) => {
         };
 
         fetcher(`/api/books/${id}`, 'PUT', bookData)
-            .then(data => navigate(`/books/${data.id}`))
+            .then 
+            navigate(`/books/${id}`)
     };
 
     return (
         <Container>
-            {book.map(book => (
             <Card className='m-4 bg-info' id='book-box'>
                 <Card.Body>
                     <Card.Title className='p-2'>
@@ -92,7 +92,7 @@ const EditBooks = (props: EditBooksProps) => {
                             <Form.Control
                                 className='bg-light'
                                 type='text'
-                                value={book.title}
+                                value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             />
                         </Form.Group>
@@ -100,8 +100,8 @@ const EditBooks = (props: EditBooksProps) => {
                             <Form.Label style={{ fontSize: '1.5em' }}>Book Author:</Form.Label>
                             <Form.Control
                                 className='bg-light'
-                                as="textarea"
-                                value={book.author}
+                                type='text'
+                                value={author}
                                 onChange={(e) => setAuthor(e.target.value)}
                             />
                         </Form.Group>
@@ -109,47 +109,20 @@ const EditBooks = (props: EditBooksProps) => {
                             <Form.Label style={{ fontSize: '1.5em' }}>Book Price:</Form.Label>
                             <Form.Control
                                 className='bg-light'
-                                as="textarea"
-                                value={book.price}
+                                type='number'
+                                value={price}
                                 onChange={(e) => setPrice(Number(e.target.value))}
                             />
                         </Form.Group>
                         <Button type='submit' variant='secondary'>Submit</Button>
-                        <Button className='btn-danger' onClick={() => handleDelete(book.id)}>Delete Book</Button>
+                        {book.map(book => (
+                            <Button key={book.id} className='btn-danger' onClick={() => handleDelete(book.id)}>Delete Book</Button>
+                        ))}
                     </Form>
                 </Card.Body>
             </Card>
-            ))}
         </Container>
     );
 };
-//     return (
-//         <Container>
-//             <div className="row justify-content-around p-3">
-//                 <div className='col-sm-3 col-md-6'>
-//                     {book.map(book => (
-//                         <Card key={book.id} className=" bg-light rounded-3 mb-3 mt-2">
-//                             <Card.Title className='text-center mt-2'>
-//                                 <textarea className='form-control bg-light' value={book.title} onChange={(e) => setTitle(e.target.value)} />
-//                             </Card.Title>
-//                             <Card.Subtitle className='text-center mt-2'>
-//                                 by {book.author}
-//                             </Card.Subtitle>
-//                             <Card.Body>
-//                                 <Card.Text >
-//                                     Category: {book.category_id}
-//                                 </Card.Text>
-//                                 <Card.Text>
-//                                     Price: {book.price}
-//                                 </Card.Text>
-//                             </Card.Body>
-//                             <button onClick={() => handleDelete(book.id)} className='bg-danger'>Delete Book</button>
-//                         </Card>
-//                     ))}
-//                 </div>
-//             </div>
-//         </Container>
-//     );
-// };
 
 export default EditBooks;

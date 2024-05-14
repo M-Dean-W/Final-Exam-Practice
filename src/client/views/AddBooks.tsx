@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { fetcher } from '../services/fetcher';
 import { Book, Category } from '../types';
+import { InputGroup } from 'react-bootstrap';
 
 
 interface AddBooksProps { }
@@ -13,10 +14,10 @@ interface AddBooksProps { }
 const AddBooks = (props: AddBooksProps) => {
 
     const [author, setAuthor] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState<number>(0.00);
     const [title, setTitle] = useState('')
     const [categoryID, setcategoryID] = useState<number | null>(null);
-    const [categories, setCategories] = useState<Category[]>([]); 
+    const [categories, setCategories] = useState<Category[]>([]);
     const navigate = useNavigate()
     const token = localStorage.getItem("token");
 
@@ -75,19 +76,22 @@ const AddBooks = (props: AddBooksProps) => {
                             <Form.Label style={{ fontSize: '1.5em' }}>Book Author:</Form.Label>
                             <Form.Control
                                 className='bg-light'
-                                as="textarea"
+                                type='text'
                                 value={author}
                                 onChange={(e) => setAuthor(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label style={{ fontSize: '1.5em' }}>Book Price:</Form.Label>
-                            <Form.Control
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text>$</InputGroup.Text>
+                                <Form.Control 
                                 className='bg-light'
-                                as="textarea"
+                                type='number'
                                 value={price}
-                                onChange={(e) => setPrice(Number(e.target.value))}
-                            />
+                                onChange={(e) => setPrice(Number(e.target.value))} aria-label="Dollar amount (with dot and two decimal places)" 
+                                />
+                            </InputGroup>
                         </Form.Group>
                         <Button type='submit' variant='secondary'>Submit</Button>
                     </Form>
