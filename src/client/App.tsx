@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { GET, fetcher } from "./services/fetcher";
+import { BrowserRouter, Route } from "react-router-dom";
+import Home from "./views/Home";
+
 
 interface AppProps {}
 
@@ -22,9 +25,15 @@ const App = (props: AppProps) => {
     }, []);
 
     return (
-        <div className="mx-auto mt-5 w-25">
-            <div className="alert alert-info text-center">Hello {data}</div>
-        </div>
+        <BrowserRouter>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/" element={}></Route>
+        <Route path="/" element={}></Route>
+        <Route path="/" element={}></Route>
+        <Route path="/" element={}></Route>
+        <Route path="/" element={}></Route>
+        <Route path="/" element={}></Route>
+        </BrowserRouter>
     );
 };
 
