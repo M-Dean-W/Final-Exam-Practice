@@ -6,6 +6,8 @@ const isDevelopment = process.env.NODE_ENV === "development";
 
 const app = express();
 
+app.use(express.json())
+
 if (isDevelopment) {
     app.use(cors());
 }
