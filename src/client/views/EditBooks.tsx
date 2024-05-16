@@ -31,9 +31,9 @@ const EditBooks = (props: EditBooksProps) => {
         fetcher(`/api/books/${id}`, 'GET')
             .then(book => {
                 setBook(book)
-                setAuthor(book.author)
-                setTitle(book.title)
-                setPrice(book.price)
+                setAuthor(book[0].author)
+                setTitle(book[0].title)
+                setPrice(book[0].price)
             })
 
     }

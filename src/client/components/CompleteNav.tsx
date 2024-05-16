@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useLocation, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
 const CompleteNav = () => {
