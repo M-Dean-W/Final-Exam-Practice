@@ -2,30 +2,36 @@ import React, { useState, useEffect } from "react";
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import { fetcher } from "../services/fetcher";
+import { Book } from "../types";
+import { Link } from "react-router-dom";
 
 interface BooksProps {}
 
 const Books = (props: BooksProps) => {
-    const [data, setData] = useState("");
+    const [books, setBooks] = useState<Book[]>([]);
 
     useEffect(() => {
         
-          fetcher("/api/hello", "GET").then((data) => setData(data.message));
+          fetcher("/api/books", "GET").then((books) => setBooks(books));
        
     }, []);
 
     return (
         <Container>
-            <Card>
-                <Card.Title></Card.Title>
-                <Card.Subtitle></Card.Subtitle>
+            {books.map(book=>(
+
+            <Card key={book.id}>
+                <Card.Title>{book.title}</Card.Title>
+                <Card.Subtitle>{book.author}</Card.Subtitle>
                 <Card.Body>
                 <Card.Text>
-                    Welcome to the Bookspage for the Bookstore. Login or Register to gain access to editing and adding books!
                 </Card.Text>
                 </Card.Body>
-                <Card.Footer></Card.Footer>
+                <Card.Footer>
+                    <Link  to={`/books/${book.id}`}>Details</Link>
+                </Card.Footer>
             </Card>
+            ))}
         </Container>
     )
 };
