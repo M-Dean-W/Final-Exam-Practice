@@ -6,13 +6,6 @@ import { fetcher } from "../services/fetcher";
 interface HomeProps {}
 
 const Home = (props: HomeProps) => {
-    const [data, setData] = useState("");
-
-    useEffect(() => {
-        
-          fetcher("/api/hello", "GET").then((data) => setData(data.message));
-       
-    }, []);
 
     return (
         <Container>
