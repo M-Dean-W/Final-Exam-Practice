@@ -15,7 +15,7 @@ export function getAllBooks(){
 }
 
 export function getOneBook(id:number){
-    return SelectQ<IBooksRow>('SELECT * FROM Books WHERE book.id = ?', [id])
+    return SelectQ<IBooksRow>('SELECT * FROM Books WHERE books.id = ?', [id])
 }
 
 export function addBook(category_id:number, title:string, author:string, price:number){
