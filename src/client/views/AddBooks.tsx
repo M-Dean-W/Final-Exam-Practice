@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form'
 import { Category } from "../types";
 import { useNavigate } from "react-router-dom";
 import { Book } from "../types";
+import { Button } from "react-bootstrap";
 
 interface AddBooksProps { }
 
@@ -18,7 +19,9 @@ const AddBooks = (props: AddBooksProps) => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
-
+    if (!token) {
+        navigate('/login')
+    }
 
     useEffect(() => {
 
@@ -52,7 +55,7 @@ const AddBooks = (props: AddBooksProps) => {
             <Card>
                 <Card.Title></Card.Title>
                 <Card.Body>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Select value={catID ?? ''} onChange={(e)=>setCatID(Number(e.target.value))}>
                             <option>Select Category</option>
                             {categories.map(category =>(
@@ -69,8 +72,9 @@ const AddBooks = (props: AddBooksProps) => {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Book Price:</Form.Label>
-                            <Form.Control type="text" value={price } onChange={(e)=>setPrice(Number(e.target.value))} />
+                            <Form.Control type="number" value={price } onChange={(e)=>setPrice(Number(e.target.value))} />
                         </Form.Group>
+                        <Button type="submit">Submit</Button>
                     </Form>
                 </Card.Body>
                 <Card.Footer></Card.Footer>
