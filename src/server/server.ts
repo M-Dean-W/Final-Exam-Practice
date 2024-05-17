@@ -16,6 +16,7 @@ if (isDevelopment) {
 if (isProduction) {
     app.use(express.static("public"));
 }
+
 app.use(routes)
 
 // 404 fallback for client side routing
