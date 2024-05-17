@@ -23,9 +23,9 @@ export function addBook(category_id:number, title:string, author:string, price:n
 }
 
 export function updateBook(category_id:number, title:string, author:string, price:number, id:number){
-    return ModifyQ('INSERT INTO Books SET category_id = ?, title = ?, author =?, price = ? WHERE id = ?',[category_id,title,author,price,id])
+    return ModifyQ('UPDATE Books SET category_id = ?, title = ?, author =?, price = ? WHERE id = ?',[category_id,title,author,price,id])
 }
 
 export function deleteBook(id:number){
-    return ModifyQ('DELETE FROM Books WHERE id=?')
+    return ModifyQ('DELETE FROM Books WHERE id=?', [id])
 }

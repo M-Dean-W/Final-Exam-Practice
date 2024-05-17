@@ -32,7 +32,7 @@ const EditBooks = (props: EditBooksProps) => {
     }, []);
 
     useEffect(()=> {
-        fetcher(`/api/books${id}`, "GET")
+        fetcher(`/api/books/${id}`, "GET")
         .then(book => {
             setBook(book)
             setTitle(book[0].title)
@@ -56,10 +56,17 @@ const EditBooks = (props: EditBooksProps) => {
             price:price
         }
 
-        fetcher('/api/books', 'PUT', bookData)
-        .then(data => navigate(`/books/${data.id}`))
+        fetcher(`/api/books/${id}`, 'PUT', bookData)
+        .then
+        navigate(`/books/${id}`)
     
-    
+    }
+
+    const handleDelete = (id: number) => {
+
+        fetcher(`/api/books/${id}`, 'DELETE')
+            .then(data => console.log(data.message))
+            navigate('/books')
     }
 
     return (
@@ -89,7 +96,11 @@ const EditBooks = (props: EditBooksProps) => {
                         <Button type="submit">Submit</Button>
                     </Form>
                 </Card.Body>
-                <Card.Footer></Card.Footer>
+                <Card.Footer>
+                {book.map(book => (
+                            <Button key={book.id} className='btn-danger' onClick={() => handleDelete(book.id)}>Delete Book</Button>
+                        ))}
+                </Card.Footer>
             </Card>
         </Container>
     )
