@@ -10,7 +10,7 @@ interface BookDetailsProps {}
 
 const BookDetails = (props: BookDetailsProps) => {
     const [book, setBook] = useState<Book[]>([]);
-    const id = useParams()
+    const {id} = useParams()
 
     useEffect(() => {
         
@@ -32,7 +32,7 @@ const BookDetails = (props: BookDetailsProps) => {
                 <Card.Text>Price: {book.price}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Link  to={`/books/${book.id}/edit`}>Details</Link>
+                    <Link  to={`/books/${book.id}/edit`}>Edit Me</Link>
                 </Card.Footer>
             </Card>
             ))}
