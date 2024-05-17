@@ -14,7 +14,7 @@ const Home = (props: HomeProps) => {
                 <Card.Subtitle></Card.Subtitle>
                 <Card.Body>
                 <Card.Text>
-                    Welcome to the Homepage for the Bookstore. Login or Register to gain access to editing and adding books!
+                    Welcome to the Homepage for the Bookstore. Login or Register to gain access to editing and adding books! Congrats on finishing the exam!
                 </Card.Text>
                 </Card.Body>
                 <Card.Footer></Card.Footer>
