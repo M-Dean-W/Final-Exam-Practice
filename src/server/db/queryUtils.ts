@@ -8,7 +8,7 @@ export async function SelectQ<T>(queryString: string, params?:any): Promise<Part
     
 }
 
-export async function ModifyQ<T>(queryString: string, params?:any): Promise<ResultSetHeader> {
+export async function ModifyQ(queryString: string, params?:any): Promise<ResultSetHeader> {
 
     const[results] = await pool.query(queryString, params)
     return results as ResultSetHeader

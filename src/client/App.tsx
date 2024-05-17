@@ -25,8 +25,8 @@ const App = (props: AppProps) => {
                 <Route path="/books/:id" element={<BookDetails />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
-                <Route path="/book/new" element={<AddBooks />}></Route>
-                <Route path="/book/:id/edit" element={<EditBooks />}></Route>
+                <Route path="/books/new" element={<AddBooks />}></Route>
+                <Route path="/books/:id/edit" element={<EditBooks />}></Route>
             </Routes>
         </BrowserRouter>
     );
